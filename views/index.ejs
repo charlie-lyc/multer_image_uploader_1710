@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeJS File Uploader</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <!-- <h1>Hello</h1> -->
+
+    <div class="container">
+
+        <h1>File Upload</h1>
+
+        <p><%= typeof msg !== 'undefined' ? msg : '' %></p>
+
+        <form 
+            action="/upload" 
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>File</span>
+                    <input 
+                        type="file" 
+                        name="myImage"
+                    >
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" placeholder="Upload one file"
+                        type="text" 
+                    >
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+
+        </form><br>
+
+        <% if (typeof msg !== 'undefined' && typeof file !== 'undefined' && msg.startsWith('Image')) { %>
+            <img src="<%= typeof file !== 'undefined'  ? file : '' %>" style="max-width: 100%; height: auto;" />
+        <% } %>
+
+        <% if (typeof msg !== 'undefined' && typeof file !== 'undefined' && msg.startsWith('File')) { %>
+        <embed src="<%= file %>" style="width: 100%; height: 1050px;" />
+        <% } %>
+
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>
